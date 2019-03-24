@@ -22,16 +22,16 @@ Several examples are available in the /examples folder, and the tests in /test a
 Browser bundles are provided in /build/, for testing purposes you can access this from rawgit:
 
 ```
-<script type="text/javascript" src="https://cdn.rawgit.com/bitshares/tyslinjs-ws/build/tyslinjs-ws.js" />
+<script type="text/javascript" src="https://cdn.rawgit.com/tyslin/tyslinjs-ws/build/tyslinjs-ws.js" />
 ```
 
-A variable bitshares_ws will be available in window.
+A variable tyslin_ws will be available in window.
 
 For use in a webpack/browserify context, see the example below for how to open a websocket connection to the Openledger API and subscribe to any object updates:
 
 ```
 var {Apis} = require("tyslinjs-ws");
-Apis.instance("wss://bitshares.openledger.info/ws", true).init_promise.then((res) => {
+Apis.instance("wss://node-east1-b.district1.io:11020", true).init_promise.then((res) => {
     console.log("connected to:", res[0].network);
     Apis.instance().db_api().exec( "set_subscribe_callback", [ updateListener, true ] )
 });
@@ -46,7 +46,7 @@ The `set_subscribe_callback` callback (updateListener) will be called whenever a
 This is a non-exhaustive list of endpoints available from the witness_node executable, which provides the API server of Bitshares.
 
 ## database_api
-https://github.com/bitshares/bitshares-core/blob/master/libraries/app/database_api.cpp
+https://github.com/tyslin/tyslin-core/blob/master/libraries/app/database_api.cpp
 
 __Usage examples__
 `Apis.instance().db_api().exec(method, params)`

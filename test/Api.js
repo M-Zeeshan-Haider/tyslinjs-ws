@@ -2,7 +2,7 @@ import assert from "assert";
 import {Apis} from "../lib";
 
 var coreAsset;
-var default_api = "wss://eu.openledger.info/ws";
+var default_api = "wss://node-east1-b.district1.io:11020";
 
 describe("Api", () => {
 
@@ -268,10 +268,10 @@ describe("Api", () => {
 
         it ("Get market data", function() {
             return new Promise( function(resolve, reject) {
-                if (coreAsset !== "BTS") {
-                    reject(new Error("This test will only work when connected to a BTS api"));
+                if (coreAsset !== "TYS") {
+                    reject(new Error("This test will only work when connected to a TYS api"));
                 }
-                Apis.instance().history_api().exec("get_fill_order_history", ["1.3.121", "1.3.0", 10])
+                Apis.instance().history_api().exec("get_fill_order_history", ["1.3.1", "1.3.0", 10])
                 .then(function(history) {
                     if (history.length > 0) {
                         resolve();
@@ -284,10 +284,10 @@ describe("Api", () => {
 
         it ("Get market data (short)", function() {
             return new Promise( function(resolve, reject) {
-                if (coreAsset !== "BTS") {
-                    reject(new Error("This test will only work when connected to a BTS api"));
+                if (coreAsset !== "TYS") {
+                    reject(new Error("This test will only work when connected to a TYS api"));
                 }
-                Apis.history.get_fill_order_history("1.3.121", "1.3.0", 10)
+                Apis.history.get_fill_order_history("1.3.1", "1.3.0", 10)
                 .then(function(history) {
                     if (history.length > 0) {
                         resolve();
@@ -380,7 +380,7 @@ describe("Api", () => {
 
         it ("Get ordered groups", function() {
             return new Promise( function(resolve, reject) {
-                Apis.instance().orders_api().exec("get_grouped_limit_orders", ["1.3.113","1.3.0",10,null,1])
+                Apis.instance().orders_api().exec("get_grouped_limit_orders", ["1.3.4","1.3.0",10,null,1])
                 .then(function(groups) {
                     if (groups.length > 0) {
                         resolve();
@@ -395,7 +395,7 @@ describe("Api", () => {
 
         it ("Get ordered groups (short)", function() {
             return new Promise( function(resolve, reject) {
-                Apis.orders.get_grouped_limit_orders("1.3.113","1.3.0",10,null,1)
+                Apis.orders.get_grouped_limit_orders("1.3.4","1.3.0",10,null,1)
                 .then(function(groups) {
                     if (groups.length > 0) {
                         resolve();
