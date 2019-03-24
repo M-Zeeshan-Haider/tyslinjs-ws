@@ -1,38 +1,18 @@
 import assert from "assert";
 import { Manager, Apis } from "../lib";
 
-var defaultUrl = "wss://eu.nodes.tyslin.ws";
+var defaultUrl = "wss://node-east1-b.district1.io:9090";
 
 var faultyNodeList = [
-    {url: "wss://bitsqsdqsdhares.openledger.info/ws", location: "Nuremberg, Germany"},
-    {url: "wss://bitazdazdshares.openledger.info/ws", location: "Nuremberg, Germany"},
-    {url: "wss://bitshaazdzares.openledger.info/ws", location: "Nuremberg, Germany"},
-    {url: "wss://bit.btzadazdsabc.org/ws", location: "Hong Kong"},
-    {url: "ws://127.0.0.1:8091", location: "Hangzhou, China"},
-    {url: "wss://tyslin.openledger.info/ws", location: "Nuremberg, Germany"},
-    {url: "wss://secure.freedomledger.com/ws", location: "Toronto, Canada"},
-    {url: "wss://node.testnet.tyslin.eu", location: "Public Testnet Server (Frankfurt, Germany)"}
+    {url: "wss://node.testnet.district1.io", location: "Public Testnet Server (Frankfurt, Germany)"}
 ];
 
 var noWorkingNodes = [
-    {url: "wss://bitsqsdqsdhares.openledger.info/ws", location: "Nuremberg, Germany"},
-    {url: "wss://bitazdazdshares.openledger.info/ws", location: "Nuremberg, Germany"},
-    {url: "wss://bitshaazdzares.openledger.info/ws", location: "Nuremberg, Germany"},
-    {url: "wss://bit.btzadazdsabc.org/ws", location: "Hong Kong"},
-    {url: "ws://127.23230.0.1:8091", location: "Hangzhou, China"},
-    {url: "wss://bitshasdares.dacplay.org:8089/ws", location:  "Hangzhou, China"},
-    {url: "wss://secuasdre.freedomledger.com/ws", location: "Toronto, Canada"},
-    {url: "wss://testnet.tyslin.eu/wqsdsqs", location: "Public Testnet Server (Frankfurt, Germany)"}
+    {url: "wss://testnet.district1.io/wqsdsqs", location: "Public Testnet Server (Frankfurt, Germany)"}
 ];
 
 var goodNodeList = [
-    {url: "wss://tyslin.openledger.info/ws", location: "Nuremberg, Germany"},
-    {url: "wss://bit.btsabc.org/ws", location: "Hong Kong"},
-    {url: "wss://bts.transwiser.com/ws", location: "Hangzhou, China"},
-    {url: "wss://tyslin.dacplay.org:8089/ws", location:  "Hangzhou, China"},
-    {url: "wss://openledger.hk/ws", location: "Hong Kong"},
-    {url: "wss://secure.freedomledger.com/ws", location: "Toronto, Canada"},
-    {url: "wss://node.testnet.tyslin.eu", location: "Public Testnet Server (Frankfurt, Germany)"}
+    {url: "wss://node.testnet.district1.io", location: "Public Testnet Server (Frankfurt, Germany)"}
 ];
 
 var fullNodeList = [
@@ -42,80 +22,25 @@ var fullNodeList = [
     },
     {url: "ws://127.0.0.1:8090", location: "Locally hosted"},
     {
-        url: "wss://tyslin.openledger.info/ws",
-        location: "Nuremberg, Germany"
+        url: "wss://node-east1-b.district1.io:11020",
+        location: "Usa, East"
     },
-    {url: "wss://eu.openledger.info/ws", location: "Berlin, Germany"},
-    {url: "wss://tyslin.nu/ws", location: "Stockholm, Sweden"},
-    {url: "wss://bit.btsabc.org/ws", location: "Hong Kong"},
-    {url: "wss://node.btscharts.com/ws", location: "Hong Kong"},
-    {url: "wss://tyslin.apasia.tech/ws", location: "Bangkok, Thailand"},
-    {url: "wss://japan.tyslin.apasia.tech/ws", location: "Tokyo, Japan"},
-    {url: "wss://tyslin.dacplay.org/ws", location: "Hangzhou, China"},
-    {url: "wss://tyslin-api.wancloud.io/ws", location: "China"},
-    {url: "wss://openledger.hk/ws", location: "Hong Kong"},
-    {url: "wss://tyslin.crypto.fans/ws", location: "Munich, Germany"},
-    {url: "wss://ws.gdex.io", location: "Japan"},
-    {url: "wss://ws.gdex.top", location: "China"},
-    {url: "wss://dex.rnglab.org", location: "Netherlands"},
-    {url: "wss://dexnode.net/ws", location: "Dallas, USA"},
-    {url: "wss://la.dexnode.net/ws", location: "LA, USA"},
-    {url: "wss://kc-us-dex.xeldal.com/ws", location: "Kansas City, USA"},
-    {url: "wss://btsza.co.za:8091/ws", location: "Cape Town, South Africa"},
-    {url: "wss://api.bts.blckchnd.com", location: "Falkenstein, Germany"},
-    {url: "wss://api-ru.bts.blckchnd.com", location: "Moscow, Russia"},
-    {url: "wss://node.market.rudex.org", location: "Germany"},
-    {
-        url: "wss://eu.nodes.tyslin.ws",
-        location: "Central Europe - Tyslin Infrastructure Program"
-    },
-    {
-        url: "wss://us.nodes.tyslin.ws",
-        location: "U.S. West Coast - Tyslin Infrastructure Program"
-    },
-    {
-        url: "wss://sg.nodes.tyslin.ws",
-        location: "Singapore - Tyslin Infrastructure Program"
-    },
-    {url: "wss://ws.winex.pro", location: "Singapore"},
-    {url: "wss://api.bts.mobi/ws", location: "VA, USA"},
-    {
-        url: "wss://api.btsxchng.com",
-        location:
-            "Global (Asia Pacific (Singapore) / US East (N. Virginia) / EU (London))"
-    },
-    {url: "wss://api.bts.network", location: "East Coast, USA"},
-    {url: "wss://btsws.roelandp.nl/ws", location: "Finland"},
-    {url: "wss://api.tyslin.bhuz.info/ws", location: "Europe"},
-    {url: "wss://bts-api.lafona.net/ws", location: "USA"},
-    {url: "wss://kimziv.com/ws", location: "Singapore"},
-    {url: "wss://api.btsgo.net/ws", location: "Singapore"},
-    {url: "wss://bts.proxyhosts.info/wss", location: "Germany"},
-    {url: "wss://bts.open.icowallet.net/ws", location: "Hangzhou, China"},
-    {url: "wss://blockzms.xyz/ws", location: "USA"},
-    {url: "wss://crazybit.online", location: "China"},
-    {url: "wss://freedom.bts123.cc:15138/", location: "China"},
-    {url: "wss://tyslin.bts123.cc:15138/", location: "China"},
-    {url: "wss://api.bts.ai/", location: "Beijing, China"},
-    {url: "wss://ws.hellobts.com/", location: "Japan"},
-    {url: "wss://tyslin.cyberit.io/", location: "Hong Kong"},
-    {url: "wss://bts-seoul.clockwork.gr/", location: "Seoul, Korea"},
-    {url: "wss://bts.to0l.cn:4443/ws", location: "China"},
+    {url: "wss://node-east1-b.district1.io:9090", location: "Eastb-1, Usa"},
     // Testnet
-    {
-        url: "wss://node.testnet.tyslin.eu",
-        location: "TESTNET - Tyslin Europe (Frankfurt, Germany)"
-    },
-    {
-        url: "wss://testnet.nodes.tyslin.ws",
-        location: "TESTNET - Tyslin Infrastructure Program"
-    }
+    // {
+    //     url: "wss://node.testnet.district1.io",
+    //     location: "TESTNET - Tyslin Europe (Frankfurt, Germany)"
+    // },
+    // {
+    //     url: "wss://testnet.nodes.tyslin.ws",
+    //     location: "TESTNET - Tyslin Infrastructure Program"
+    // }
 ]
 
 
 /* This node currently throws an API error for the crypto API */
 var failedInitNodes = [
-    {url: "wss://tyslin.crypto.fans/ws", location: "Munich"}
+    // {url: "wss://tyslin.crypto.fans/ws", location: "Munich"}
 ];
 
 describe("Connection Manager", function() {
@@ -132,7 +57,7 @@ describe("Connection Manager", function() {
     });
 
     it("Instantiates with crypto api", function() {
-        let man = new Manager({url: "wss://eu.openledger.info/ws", urls: [], optionalApis: {enableCrypto: true}});
+        let man = new Manager({url: "wss://node-east1-b.district1.io:11020", urls: [], optionalApis: {enableCrypto: true}});
         return new Promise( function(resolve, reject) {
             man.connect().then(() => {
                 assert(!!Apis.instance().crypto_api());
@@ -142,7 +67,7 @@ describe("Connection Manager", function() {
     });
 
     it("Instantiates with orders api", function() {
-        let man = new Manager({url: "wss://eu.openledger.info/ws", urls: [], optionalApis: {enableCrypto: true, enableOrders: true}});
+        let man = new Manager({url: "wss://node-east1-b.district1.io:11020", urls: [], optionalApis: {enableCrypto: true, enableOrders: true}});
         return new Promise( function(resolve, reject) {
             man.connect().then(() => {
                 assert(!!Apis.instance().orders_api());
@@ -165,7 +90,7 @@ describe("Connection Manager", function() {
         let man = new Manager({url: "ws://127.0.0.1:8092", urls: faultyNodeList.map(a => a.url)});
         return new Promise( function(resolve, reject) {
             man.connectWithFallback().then(function() {
-                assert.equal(man.url, "wss://tyslin.openledger.info/ws");
+                assert.equal(man.url, "wss://node-east1-b.district1.io:9090");
                 resolve();
             })
             .catch(reject)
@@ -201,10 +126,10 @@ describe("Connection Manager", function() {
     it("Can automatically fallback when closed", function() {
         this.timeout(20000);
         let man = new Manager({
-            url: "wss://eu.nodes.tyslin.ws",
+            url: "wss://node-east1-b.district1.io:9090",
             urls: ([
-                "wss://eu.nodes.tyslin.ws",
-                "wss://tyslin.openledger.info/ws"
+                "wss://node-east1-b.district1.io:9090",
+                "wss://node-east1-b.district1.io:11020"
             ]),
             autoFallback: true
         });
@@ -231,10 +156,10 @@ describe("Connection Manager", function() {
         return new Promise( function(resolve, reject) {
 
         let man = new Manager({
-            url: "wss://eu.nodes.tyslin.ws",
+            url: "wss://node-east1-b.district1.io:9090",
             urls: ([
-                "wss://eu.nodes.tyslin.ws",
-                "wss://eu.openledger.info/ws"
+                "wss://node-east1-b.district1.io:9090",
+                "wss://node-east1-b.district1.io:11020"
             ]),
             closeCb: function() {
                 resolve();
@@ -259,7 +184,7 @@ describe("Connection Manager", function() {
 
     it("Checks connections for url and urls", function() {
         this.timeout(20000);
-        let man = new Manager({url: "wss://eu.nodes.tyslin.ws", urls: ["wss://bts.open.icowallet.net/ws"]});
+        let man = new Manager({url: "wss://node-east1-b.district1.io:9090", urls: ["wss://node-east1-b.district1.io:9090"]});
         return new Promise( function(resolve, reject) {
             man.checkConnections().then((latencies => {
                 assert.equal(Object.keys(latencies).length, 2);

@@ -18,7 +18,7 @@
     <script type="text/javascript">
         var Api = window.tyslin_ws;
 
-        let server = "wss://tyslin.openledger.info/ws";
+        let server = "wss://node-east1-b.district1.io:11020";
 
         Api.instance(server, true).init_promise.then((res) => {
             console.log("Api ready:", res);

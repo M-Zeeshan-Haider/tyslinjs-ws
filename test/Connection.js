@@ -2,7 +2,7 @@ import assert from "assert";
 import {Apis} from "../lib";
 
 var coreAsset;
-var default_api = "wss://eu.nodes.tyslin.ws";
+var default_api = "wss://node-east1-b.district1.io:9090";
 
 describe("Connection", () => {
 
@@ -31,7 +31,7 @@ describe("Connection", () => {
         return new Promise( function(resolve, reject) {
             Apis.instance(default_api, true).init_promise.then(function (result) {
                 coreAsset = result[0].network.core_asset;
-                assert(coreAsset === "BTS");
+                assert(coreAsset === "TYS");
                 resolve();
             }).catch(reject)
         });
@@ -39,7 +39,7 @@ describe("Connection", () => {
 
     it("Connect to Testnet", function() {
         return new Promise( function(resolve, reject) {
-            Apis.instance("wss://node.testnet.tyslin.eu", true).init_promise.then(function (result) {
+            Apis.instance("wss://node.testnet.district1.io", true).init_promise.then(function (result) {
                 coreAsset = result[0].network.core_asset;
                 assert(coreAsset === "TEST");
                 resolve();
@@ -63,7 +63,7 @@ describe("Connection", () => {
         return new Promise( function(resolve, reject) {
             Apis.instance(default_api, true).init_promise.then(function (result) {
                 coreAsset = result[0].network.core_asset;
-                assert(coreAsset === "BTS");
+                assert(coreAsset === "TYS");
                 Apis.instance().close().then(function() {
                     resolve();
                 }).catch(reject)
@@ -83,8 +83,8 @@ describe("Connection reset", () => {
         return new Promise( function(resolve, reject) {
             Apis.instance(default_api, true).init_promise.then(function (result) {
                 coreAsset = result[0].network.core_asset;
-                assert(coreAsset === "BTS");
-                Apis.reset("wss://node.testnet.tyslin.eu", true).then(instance => {
+                assert(coreAsset === "TYS");
+                Apis.reset("wss://node.testnet.district1.io", true).then(instance => {
                     instance.init_promise.then(function (result) {
                         coreAsset = result[0].network.core_asset;
                         assert(coreAsset === "TEST");

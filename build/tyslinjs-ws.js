@@ -294,9 +294,9 @@ _this = {
     review_in_secs_committee: 24 * 60 * 60,
     networks: {
         Tyslin: {
-            core_asset: "BTS",
-            address_prefix: "BTS",
-            chain_id: "4018d7844c78f6a6c41c6a552b898022310fc5dec06da467ee7905a8dad512c8"
+            core_asset: "TYS",
+            address_prefix: "TYS",
+            chain_id: "ee544398e957484f78b583219c4740b76302a88b0e5be7548e7cd5a849ea7920"
         },
         Muse: {
             core_asset: "MUSE",

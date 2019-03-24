@@ -31,7 +31,7 @@ For use in a webpack/browserify context, see the example below for how to open a
 
 ```
 var {Apis} = require("tyslinjs-ws");
-Apis.instance("wss://tyslin.openledger.info/ws", true).init_promise.then((res) => {
+Apis.instance("wss://node-east1-b.district1.io:11020", true).init_promise.then((res) => {
     console.log("connected to:", res[0].network);
     Apis.instance().db_api().exec( "set_subscribe_callback", [ updateListener, true ] )
 });
