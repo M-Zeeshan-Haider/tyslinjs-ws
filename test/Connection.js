@@ -2,7 +2,7 @@ import assert from "assert";
 import {Apis} from "../lib";
 
 var coreAsset;
-var default_api = "wss://eu.nodes.bitshares.ws";
+var default_api = "wss://eu.nodes.tyslin.ws";
 
 describe("Connection", () => {
 
@@ -39,7 +39,7 @@ describe("Connection", () => {
 
     it("Connect to Testnet", function() {
         return new Promise( function(resolve, reject) {
-            Apis.instance("wss://node.testnet.bitshares.eu", true).init_promise.then(function (result) {
+            Apis.instance("wss://node.testnet.tyslin.eu", true).init_promise.then(function (result) {
                 coreAsset = result[0].network.core_asset;
                 assert(coreAsset === "TEST");
                 resolve();
@@ -84,7 +84,7 @@ describe("Connection reset", () => {
             Apis.instance(default_api, true).init_promise.then(function (result) {
                 coreAsset = result[0].network.core_asset;
                 assert(coreAsset === "BTS");
-                Apis.reset("wss://node.testnet.bitshares.eu", true).then(instance => {
+                Apis.reset("wss://node.testnet.tyslin.eu", true).then(instance => {
                     instance.init_promise.then(function (result) {
                         coreAsset = result[0].network.core_asset;
                         assert(coreAsset === "TEST");
